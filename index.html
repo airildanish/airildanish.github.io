@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love</title>
+    <style>
+        /* Petal Falling Animation */
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Petal Styling */
+        .petal {
+            position: fixed;
+            top: -10vh;
+            width: 30px;
+            height: 30px;
+            background-size: cover;
+            opacity: 0;
+            animation: fall 7s linear;
+        }
+
+        /* Page Styling */
+        body {
+            background-color: #ffe6f2;
+            color: #5a2a2a;
+            font-family: "Georgia", serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        .love-letter {
+            font-style: italic;
+            padding: 15px;
+            border: 2px dashed #ff85a2;
+            margin-top: 15px;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        button {
+            background-color: #ff85a2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #e67399;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>For My Beautiful Love</h1>
+        <p>You're the most special person in my life. Click below for a little surprise! 💖</p>
+        <button onclick="showLetter()">Open Love Letter</button>
+        <div class="love-letter" id="letter">
+            <p>My dearest love,</p>
+            <p>You make my days brighter and my heart lighter. I'm so lucky to have you. 💕</p>
+            <p>Forever yours.</p>
+        </div>
+    </div>
+
+    <script>
+        function createPetal() {
+            const petalImages = [
+                "Petals/1.png",  
+                "Petals/2.png",  
+                "Petals/3.png"   
+            ];
+
+            const petal = document.createElement("div");
+            petal.classList.add("petal");
+
+            // Set random petal image
+            const randomImage = petalImages[Math.floor(Math.random() * petalImages.length)];
+            petal.style.backgroundImage = `url('${randomImage}')`;
+
+            // Random position and speed
+            petal.style.left = Math.random() * 100 + "vw";
+            petal.style.animationDuration = (Math.random() * 4 + 5) + "s";  
+
+            document.body.appendChild(petal);
+
+            // Remove petal after falling
+            setTimeout(() => {
+                petal.remove();
+            }, 12000); // Increased timeout for longer effect
+        }
+
+        setInterval(createPetal, 500); // Create petals every 0.5s
+
+        function showLetter() {
+            document.getElementById("letter").style.opacity = 1;
+        }
+    </script>
+</body>
+</html>
